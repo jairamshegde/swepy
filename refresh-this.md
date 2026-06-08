@@ -16,8 +16,15 @@ y = x
 y.append(4)
 print(x)
 ```
-**Answer:** `[1, 2, 3, 4]`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`[1, 2, 3, 4]`**
+
 `y = x` is not a copy — both names point to the same list object. To copy: `y = x[:]` or `y = x.copy()`.
+
+</details>
 
 ---
 
@@ -27,8 +34,15 @@ a = (1, [2, 3], 4)
 a[1].append(5)
 print(a)
 ```
-**Answer:** `(1, [2, 3, 5], 4)`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`(1, [2, 3, 5], 4)`**
+
 The tuple is immutable but the list *inside* it is mutable. Tuple immutability means you can't reassign `a[1]`, but you can mutate what it points to.
+
+</details>
 
 ---
 
@@ -43,8 +57,15 @@ print(f(2))
 print(f(3, []))
 print(f(4))
 ```
-**Answer:** `[1]` → `[1, 2]` → `[3]` → `[1, 2, 4]`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`[1]` → `[1, 2]` → `[3]` → `[1, 2, 4]`**
+
 Default list is created once at function definition and shared across calls. `f(3, [])` passes a fresh list so it doesn't affect the default. Classic mutable default trap.
+
+</details>
 
 ---
 
@@ -60,8 +81,15 @@ def outer():
 outer()
 print(x)
 ```
-**Answer:** `10` then `5`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`10` then `5`**
+
 LEGB rule — `inner()` sees `x = 10` from its enclosing scope. The global `x = 5` is untouched.
+
+</details>
 
 ---
 
@@ -70,8 +98,15 @@ LEGB rule — `inner()` sees `x = 10` from its enclosing scope. The global `x = 
 print(0.1 + 0.2 == 0.3)
 print(round(0.1 + 0.2, 1) == 0.3)
 ```
-**Answer:** `False` then `True`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`False` then `True`**
+
 Floating-point representation error. Use `round()` or `math.isclose()` for float comparisons in production.
+
+</details>
 
 ---
 
@@ -83,8 +118,15 @@ b.append(4)
 print(a)
 print(b)
 ```
-**Answer:** `[1, 2, 3]` then `[1, 2, 3, 4]`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`[1, 2, 3]` then `[1, 2, 3, 4]`**
+
 Slice creates a shallow copy. Appending to `b` doesn't affect `a`. But if the list contained nested objects, those would still be shared.
+
+</details>
 
 ---
 
@@ -95,8 +137,15 @@ print(nums[1:4])
 print(nums[::2])
 print(nums[::-1])
 ```
-**Answer:** `[2, 3, 4]` → `[1, 3, 5]` → `[5, 4, 3, 2, 1]`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`[2, 3, 4]` → `[1, 3, 5]` → `[5, 4, 3, 2, 1]`**
+
 Standard slicing. `[start:stop:step]`. Negative step reverses.
+
+</details>
 
 ---
 
@@ -105,8 +154,15 @@ Standard slicing. `[start:stop:step]`. Negative step reverses.
 x = [i**2 for i in range(5) if i % 2 == 0]
 print(x)
 ```
-**Answer:** `[0, 4, 16]`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`[0, 4, 16]`**
+
 List comprehension with filter. `range(5)` → 0,1,2,3,4 → even values 0,2,4 → squared.
+
+</details>
 
 ---
 
@@ -116,8 +172,15 @@ d = {'a': 1, 'b': 2}
 print(d.get('c', 0))
 print(d.get('a', 99))
 ```
-**Answer:** `0` then `1`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`0` then `1`**
+
 `.get(key, default)` returns default if key missing, actual value if present.
+
+</details>
 
 ---
 
@@ -128,8 +191,15 @@ s.add(2)
 s.add(4)
 print(sorted(s))
 ```
-**Answer:** `[1, 2, 3, 4]`  
+
+<details>
+<summary>▶ Answer</summary>
+
+**`[1, 2, 3, 4]`**
+
 Sets have no duplicates. Adding `2` again is a no-op. Sets are unordered, so `sorted()` for predictable output.
+
+</details>
 
 ---
 
@@ -150,7 +220,12 @@ def all_positive(nums):
 
 print(all_positive([1, -2, 3]))  # Should be False
 ```
-**Bug:** Returns `True` on the first positive number instead of checking all.  
+
+<details>
+<summary>▶ Answer</summary>
+
+**Bug:** Returns `True` on the first positive number instead of checking all.
+
 **Fix:**
 ```python
 def all_positive(nums):
@@ -160,6 +235,8 @@ def all_positive(nums):
     return True
 # Or: return all(n > 0 for n in nums)
 ```
+
+</details>
 
 ---
 
@@ -171,7 +248,12 @@ def dedupe(items):
 
 print(dedupe([3, 1, 2, 1, 3]))  # May not preserve order
 ```
-**Bug:** `set()` doesn't preserve insertion order.  
+
+<details>
+<summary>▶ Answer</summary>
+
+**Bug:** `set()` doesn't preserve insertion order.
+
 **Fix:**
 ```python
 def dedupe(items):
@@ -180,6 +262,8 @@ def dedupe(items):
 # Or use dict.fromkeys() which preserves insertion order in Python 3.7+:
 # return list(dict.fromkeys(items))
 ```
+
+</details>
 
 ---
 
@@ -192,7 +276,12 @@ def safe_divide(a, b):
     except:
         return 0
 ```
-**Bug:** Bare `except:` catches *everything* including `KeyboardInterrupt`, `SystemExit`. Always catch specific exceptions.  
+
+<details>
+<summary>▶ Answer</summary>
+
+**Bug:** Bare `except:` catches *everything* including `KeyboardInterrupt`, `SystemExit`. Always catch specific exceptions.
+
 **Fix:**
 ```python
 def safe_divide(a, b):
@@ -201,6 +290,8 @@ def safe_divide(a, b):
     except ZeroDivisionError:
         return 0
 ```
+
+</details>
 
 ---
 
@@ -213,11 +304,18 @@ for p in parts:
     result += p
 print(result)
 ```
-**Bug:** String `+=` in a loop creates a new string object each iteration → O(n²) in the worst case.  
+
+<details>
+<summary>▶ Answer</summary>
+
+**Bug:** String `+=` in a loop creates a new string object each iteration → O(n²) in the worst case.
+
 **Fix:**
 ```python
 result = "".join(parts)
 ```
+
+</details>
 
 ---
 
@@ -230,7 +328,12 @@ for ch in text:
     freq[ch] += 1
 print(freq)
 ```
-**Bug:** `KeyError` on first access — key doesn't exist yet.  
+
+<details>
+<summary>▶ Answer</summary>
+
+**Bug:** `KeyError` on first access — key doesn't exist yet.
+
 **Fix (3 options):**
 ```python
 # Option 1 — setdefault
@@ -247,6 +350,8 @@ for ch in text:
     freq[ch] += 1
 ```
 
+</details>
+
 ---
 
 ## Block 3 — Implement This (10-Minute Problems)
@@ -256,10 +361,15 @@ for ch in text:
 ---
 
 **Q16. Flatten a nested list (arbitrary depth)**
-```python
-# Input:  [1, [2, [3, 4], 5], 6]
-# Output: [1, 2, 3, 4, 5, 6]
+```
+Input:  [1, [2, [3, 4], 5], 6]
+Output: [1, 2, 3, 4, 5, 6]
+```
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 def flatten(lst):
     result = []
     for item in lst:
@@ -269,7 +379,8 @@ def flatten(lst):
             result.append(item)
     return result
 ```
-**Follow-up:** Do it as a generator (memory-efficient for huge nested structures):
+
+**Follow-up:** Generator version (memory-efficient for huge nested structures):
 ```python
 def flatten_gen(lst):
     for item in lst:
@@ -279,13 +390,20 @@ def flatten_gen(lst):
             yield item
 ```
 
+</details>
+
 ---
 
 **Q17. Group anagrams together**
-```python
-# Input:  ["eat", "tea", "tan", "ate", "nat", "bat"]
-# Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+```
+Input:  ["eat", "tea", "tan", "ate", "nat", "bat"]
+Output: [["eat","tea","ate"], ["tan","nat"], ["bat"]]
+```
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 from collections import defaultdict
 
 def group_anagrams(words):
@@ -296,12 +414,19 @@ def group_anagrams(words):
     return list(groups.values())
 ```
 
+</details>
+
 ---
 
 **Q18. Implement `zip()` from scratch**
-```python
-# zip([1,2,3], ['a','b','c']) → [(1,'a'), (2,'b'), (3,'c')]
+```
+zip([1,2,3], ['a','b','c']) → [(1,'a'), (2,'b'), (3,'c')]
+```
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 def my_zip(*iterables):
     iters = [iter(it) for it in iterables]
     while True:
@@ -314,12 +439,19 @@ def my_zip(*iterables):
         yield tuple(result)
 ```
 
+</details>
+
 ---
 
 **Q19. Implement a generator for fibonacci numbers**
-```python
-# Yields: 0, 1, 1, 2, 3, 5, 8, ...
+```
+Yields: 0, 1, 1, 2, 3, 5, 8, ...
+```
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 def fibonacci():
     a, b = 0, 1
     while True:
@@ -331,11 +463,18 @@ gen = fibonacci()
 print([next(gen) for _ in range(8)])
 # [0, 1, 1, 2, 3, 5, 8, 13]
 ```
+
 **Why generators matter here:** Infinite sequence. You can't store all fibonacci numbers — you yield them lazily.
+
+</details>
 
 ---
 
 **Q20. Implement a timing decorator**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import time
 import functools
@@ -355,11 +494,18 @@ def slow_function():
     time.sleep(0.1)
     return "done"
 ```
+
 **Key detail:** `@functools.wraps(func)` preserves the original function's `__name__` and `__doc__`. Always include it in real decorators.
+
+</details>
 
 ---
 
 **Q21. Implement a retry decorator**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import time
 import functools
@@ -384,12 +530,16 @@ def call_api():
     ...
 ```
 
+</details>
+
 ---
 
-**Q22. Context manager using a class**
-```python
-# Implement a context manager that times a code block
+**Q22. Context manager using a class** — implement one that times a code block
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 import time
 
 class Timer:
@@ -406,7 +556,8 @@ with Timer() as t:
     time.sleep(0.2)
 # prints: Elapsed: 0.2001s
 ```
-**Follow-up:** Implement the same using `@contextlib.contextmanager`:
+
+**Follow-up:** Same thing using `@contextlib.contextmanager`:
 ```python
 from contextlib import contextmanager
 
@@ -417,9 +568,15 @@ def timer():
     print(f"Elapsed: {time.perf_counter() - start:.4f}s")
 ```
 
+</details>
+
 ---
 
 **Q23. Implement `defaultdict` behaviour from scratch**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 class MyDefaultDict(dict):
     def __init__(self, default_factory, *args, **kwargs):
@@ -438,13 +595,20 @@ d["a"].append(2)
 print(d)  # {'a': [1, 2]}
 ```
 
+</details>
+
 ---
 
 **Q24. Batch an iterable into chunks of size N**
-```python
-# Input:  [1,2,3,4,5,6,7], n=3
-# Output: [[1,2,3], [4,5,6], [7]]
+```
+Input:  [1,2,3,4,5,6,7], n=3
+Output: [[1,2,3], [4,5,6], [7]]
+```
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 def batch(iterable, n):
     lst = list(iterable)
     return [lst[i:i+n] for i in range(0, len(lst), n)]
@@ -455,15 +619,23 @@ def batch_gen(iterable, n):
     while chunk := list(itertools.islice(it, n)):
         yield chunk
 ```
+
 **AI relevance:** Exactly the pattern for batching embedding API calls.
+
+</details>
 
 ---
 
 **Q25. Flatten a dict to dot-notation keys**
-```python
-# Input:  {"a": {"b": {"c": 1}}, "d": 2}
-# Output: {"a.b.c": 1, "d": 2}
+```
+Input:  {"a": {"b": {"c": 1}}, "d": 2}
+Output: {"a.b.c": 1, "d": 2}
+```
 
+<details>
+<summary>▶ Answer</summary>
+
+```python
 def flatten_dict(d, prefix=""):
     result = {}
     for key, value in d.items():
@@ -475,6 +647,8 @@ def flatten_dict(d, prefix=""):
     return result
 ```
 
+</details>
+
 ---
 
 ## Block 4 — Collections & Built-ins Mastery
@@ -484,6 +658,9 @@ def flatten_dict(d, prefix=""):
 ---
 
 **Q26. When do you use `deque` over a list?**
+
+<details>
+<summary>▶ Answer</summary>
 
 Use `deque` when you need O(1) appends and pops from *both ends*.
 
@@ -500,9 +677,15 @@ for x in [1, 2, 3, 4, 5]:
 
 List `pop(0)` is O(n). `deque.popleft()` is O(1). **Critical for RAG sliding-window context management.**
 
+</details>
+
 ---
 
 **Q27. Use `Counter` to find the most common K words**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from collections import Counter
 
@@ -519,9 +702,15 @@ print(c1 + c2)  # Counter({'a': 3, 'b': 3})
 print(c1 - c2)  # Counter({'a': 1})  — subtracts, drops zero/negatives
 ```
 
+</details>
+
 ---
 
-**Q28. `defaultdict` for building an inverted index**
+**Q28. Use `defaultdict` to build an inverted index**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from collections import defaultdict
 
@@ -539,11 +728,18 @@ for doc_id, text in docs.items():
 print(inverted["cat"])  # {0, 2}
 print(inverted["sat"])  # {0, 1}
 ```
+
 **AI relevance:** An inverted index is the core data structure inside BM25 and keyword search engines.
+
+</details>
 
 ---
 
 **Q29. `heapq` — Top-K elements from a large stream**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import heapq
 
@@ -561,11 +757,18 @@ def top_k_stream(stream, k):
             heapq.heappop(heap)
     return sorted(heap, reverse=True)
 ```
+
 **AI relevance:** Top-K retrieval in vector search. Maintaining top-K candidates without loading all results.
+
+</details>
 
 ---
 
-**Q30. `itertools` — Cartesian product and combinations**
+**Q30. `itertools` — Cartesian product and sliding windows**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import itertools
 
@@ -589,9 +792,15 @@ print(list(windows([1,2,3,4,5], 3)))
 # [(1,2,3), (2,3,4), (3,4,5)]
 ```
 
+</details>
+
 ---
 
 **Q31. `functools.lru_cache` — When and how**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from functools import lru_cache
 
@@ -611,6 +820,8 @@ print(expensive_embedding.cache_info())
 # CacheInfo(hits=1, misses=2, maxsize=128, currsize=2)
 ```
 
+</details>
+
 ---
 
 ## Block 5 — OOP for Interviews
@@ -620,6 +831,10 @@ print(expensive_embedding.cache_info())
 ---
 
 **Q32. Implement a Singleton**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 class Singleton:
     _instance = None
@@ -633,11 +848,18 @@ a = Singleton()
 b = Singleton()
 print(a is b)  # True
 ```
+
 **AI use case:** Single shared LLM client, shared config object across an agent pipeline.
+
+</details>
 
 ---
 
 **Q33. `@property` — Validate on set**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 class TokenBudget:
     def __init__(self, max_tokens: int):
@@ -659,9 +881,15 @@ class TokenBudget:
         return self._max_tokens - self._used
 ```
 
+</details>
+
 ---
 
-**Q34. `__repr__` vs `__str__`**
+**Q34. `__repr__` vs `__str__` — what's the difference?**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 class Chunk:
     def __init__(self, text, score):
@@ -678,11 +906,18 @@ c = Chunk("hello world", 0.92)
 print(str(c))   # Chunk(score=0.92)
 print(repr(c))  # Chunk(text='hello world', score=0.92)
 ```
+
 **Rule:** `__repr__` should produce a string that could recreate the object. `__str__` is for human display.
+
+</details>
 
 ---
 
 **Q35. Dataclass for clean data containers**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from dataclasses import dataclass, field
 from typing import Optional
@@ -703,7 +938,10 @@ c = RetrievedChunk(doc_id="d1", text="hello", score=0.85)
 print(c)
 # RetrievedChunk(doc_id='d1', text='hello', score=0.85, metadata={}, reranked_score=None)
 ```
+
 **Why interviewers love this question:** It reveals if you know modern Python. `@dataclass` removes boilerplate `__init__`, `__repr__`, `__eq__` while adding validation via `__post_init__`.
+
+</details>
 
 ---
 
@@ -713,7 +951,10 @@ print(c)
 
 ---
 
-**Q36. Thread vs Process vs Asyncio — one-liner decision tree**
+**Q36. Thread vs Process vs Asyncio — decision tree**
+
+<details>
+<summary>▶ Answer</summary>
 
 | Task type | Use |
 |---|---|
@@ -724,9 +965,15 @@ print(c)
 
 **The GIL:** CPython's Global Interpreter Lock allows only one thread to execute Python bytecode at a time. Threading doesn't help for CPU-bound work — use multiprocessing.
 
+</details>
+
 ---
 
-**Q37. `asyncio` — basic coroutine pattern**
+**Q37. `asyncio` — basic coroutine pattern for parallel API calls**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import asyncio
 
@@ -740,11 +987,18 @@ async def process_batch(texts: list[str]) -> list[list[float]]:
 
 results = asyncio.run(process_batch(["a", "b", "c"]))
 ```
+
 **Key:** `asyncio.gather()` runs coroutines concurrently. All 3 `fetch_embedding` calls run during each other's `await asyncio.sleep`.
+
+</details>
 
 ---
 
 **Q38. Semaphore — cap concurrent API calls**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import asyncio
 
@@ -762,9 +1016,15 @@ async def main():
 asyncio.run(main())
 ```
 
+</details>
+
 ---
 
 **Q39. `ThreadPoolExecutor` for sync code you can't make async**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -783,6 +1043,8 @@ with ThreadPoolExecutor(max_workers=5) as executor:
         print(f"{text}: {result}")
 ```
 
+</details>
+
 ---
 
 ## Block 7 — String & File Operations
@@ -792,6 +1054,10 @@ with ThreadPoolExecutor(max_workers=5) as executor:
 ---
 
 **Q40. Parse structured text from LLM output**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import re
 
@@ -814,9 +1080,15 @@ print(parse_fields(raw))
 # {'Name': 'Jairam Hegde', 'Role': 'Lead AI Engineer', 'Score': '0.92', 'Tags': 'RAG, Agents, LLMs'}
 ```
 
+</details>
+
 ---
 
 **Q41. Stream-read a large file without loading it all**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 def stream_chunks(filepath, chunk_size=1024):
     """Read a large file in chunks — never loads full file into memory."""
@@ -834,9 +1106,15 @@ def stream_lines(filepath):
             yield line.rstrip()
 ```
 
+</details>
+
 ---
 
 **Q42. Extract JSON from a string that has other content**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import json, re
 
@@ -854,7 +1132,10 @@ llm_output = 'Sure! Here is the result: {"name": "Jairam", "score": 0.9} Hope th
 print(extract_json(llm_output))
 # {'name': 'Jairam', 'score': 0.9}
 ```
+
 **AI relevance:** This is the exact function you need when your LLM doesn't use structured outputs and wraps JSON in prose.
+
+</details>
 
 ---
 
@@ -865,6 +1146,10 @@ print(extract_json(llm_output))
 ---
 
 **Q43. Annotate a function correctly**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from typing import Optional, Union
 
@@ -884,9 +1169,15 @@ def parse_score(value: str | float) -> float:
     return float(value)
 ```
 
+</details>
+
 ---
 
 **Q44. `TypedDict` for structured dicts**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from typing import TypedDict
 
@@ -899,18 +1190,25 @@ class ChunkResult(TypedDict):
 def search(query: str) -> list[ChunkResult]:
     ...
 ```
+
 Use `TypedDict` when a dict has a fixed, known set of keys — cleaner than a plain dict, lighter than a dataclass.
+
+</details>
 
 ---
 
 **Q45. Protocol for duck-typing**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 from typing import Protocol
 
 class Retriever(Protocol):
     def search(self, query: str, top_k: int) -> list[dict]: ...
 
-# Any class implementing .search() with the right signature satisfies this — 
+# Any class implementing .search() with the right signature satisfies this —
 # no inheritance needed. Clean for swapping between BM25, dense, and hybrid retrievers.
 
 class BM25Retriever:
@@ -921,6 +1219,8 @@ def run_pipeline(retriever: Retriever, query: str):
     return retriever.search(query, top_k=5)
 ```
 
+</details>
+
 ---
 
 ## Block 9 — Performance & Memory
@@ -929,7 +1229,11 @@ def run_pipeline(retriever: Retriever, query: str):
 
 ---
 
-**Q46. List comprehension vs `map()` vs loop — when to use which**
+**Q46. List comprehension vs `map()` vs loop — when to use which?**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 # All three do the same thing:
 nums = range(1_000_000)
@@ -942,16 +1246,22 @@ squares_map = map(lambda x: x**2, nums)
 
 # Generator — best when you DON'T need all results at once
 squares_gen = (x**2 for x in nums)
-
-# Rule of thumb:
-# Need all results in memory → list comprehension
-# Piping into another iterator → map() or generator
-# Infinite / very large stream → generator
 ```
+
+**Rule of thumb:**
+- Need all results in memory → list comprehension
+- Piping into another iterator → `map()` or generator
+- Infinite / very large stream → generator
+
+</details>
 
 ---
 
 **Q47. Profile code quickly with `timeit`**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 import timeit
 
@@ -965,9 +1275,15 @@ print(f"join: {t1:.3f}s | concat: {t2:.3f}s")
 # join is typically 2–4x faster
 ```
 
+</details>
+
 ---
 
 **Q48. Memory-efficient: `__slots__`**
+
+<details>
+<summary>▶ Answer</summary>
+
 ```python
 class WithSlots:
     __slots__ = ['doc_id', 'score', 'embedding']
@@ -982,7 +1298,10 @@ class WithoutSlots:
         self.score = score
         self.embedding = embedding
 ```
+
 `__slots__` prevents creation of `__dict__` per instance — saves ~40–50% memory when you have millions of objects (e.g., storing 1M retrieved chunks).
+
+</details>
 
 ---
 
@@ -992,18 +1311,42 @@ class WithoutSlots:
 
 ---
 
-**Q49.** What is the difference between `is` and `==`?  
-**A:** `==` checks value equality. `is` checks identity (same object in memory). `a = [1,2]; b = [1,2]; a == b` → True, `a is b` → False.
+**Q49.** What is the difference between `is` and `==`?
+
+<details>
+<summary>▶ Answer</summary>
+
+`==` checks value equality. `is` checks identity (same object in memory).
+
+```python
+a = [1, 2]
+b = [1, 2]
+a == b  # True
+a is b  # False
+```
+
+</details>
 
 ---
 
-**Q50.** What does `*args` and `**kwargs` do?  
-**A:** `*args` collects extra positional arguments as a tuple. `**kwargs` collects extra keyword arguments as a dict. Used in wrappers and decorators to forward arguments without knowing them.
+**Q50.** What does `*args` and `**kwargs` do?
+
+<details>
+<summary>▶ Answer</summary>
+
+`*args` collects extra positional arguments as a tuple. `**kwargs` collects extra keyword arguments as a dict. Used in wrappers and decorators to forward arguments without knowing them.
+
+</details>
 
 ---
 
-**Q51.** What is a closure?  
-**A:** A function that captures variables from its enclosing scope even after that scope has exited.  
+**Q51.** What is a closure?
+
+<details>
+<summary>▶ Answer</summary>
+
+A function that captures variables from its enclosing scope even after that scope has exited.
+
 ```python
 def make_multiplier(n):
     def multiply(x):
@@ -1014,15 +1357,28 @@ double = make_multiplier(2)
 print(double(5))  # 10
 ```
 
----
-
-**Q52.** `list` vs `tuple` — when do you choose tuple?  
-**A:** Tuple when data is fixed and should not change (coordinates, RGB values, config pairs), and for use as dict keys (tuples are hashable, lists are not).
+</details>
 
 ---
 
-**Q53.** What does `yield from` do?  
-**A:** Delegates to a sub-generator — cleaner than looping and yielding manually.  
+**Q52.** `list` vs `tuple` — when do you choose tuple?
+
+<details>
+<summary>▶ Answer</summary>
+
+Tuple when data is fixed and should not change (coordinates, RGB values, config pairs), and for use as dict keys (tuples are hashable, lists are not).
+
+</details>
+
+---
+
+**Q53.** What does `yield from` do?
+
+<details>
+<summary>▶ Answer</summary>
+
+Delegates to a sub-generator — cleaner than looping and yielding manually.
+
 ```python
 def chain(*iters):
     for it in iters:
@@ -1030,36 +1386,81 @@ def chain(*iters):
 print(list(chain([1,2], [3,4], [5])))  # [1, 2, 3, 4, 5]
 ```
 
----
-
-**Q54.** How do you reverse a dict?  
-**A:** `{v: k for k, v in d.items()}` — only works if values are unique and hashable.
+</details>
 
 ---
 
-**Q55.** What is `enumerate()` and when do you use it?  
-**A:** Returns `(index, value)` pairs while iterating. Use whenever you need both the index and value. Never use `range(len(lst))` — use `enumerate(lst)`.
+**Q54.** How do you reverse a dict?
+
+<details>
+<summary>▶ Answer</summary>
+
+```python
+{v: k for k, v in d.items()}
+```
+
+Only works if values are unique and hashable.
+
+</details>
 
 ---
 
-**Q56.** Difference between `sorted()` and `.sort()`?  
-**A:** `sorted()` returns a new list, works on any iterable. `.sort()` sorts in-place, only on lists.
+**Q55.** What is `enumerate()` and when do you use it?
+
+<details>
+<summary>▶ Answer</summary>
+
+Returns `(index, value)` pairs while iterating. Use whenever you need both the index and value. Never use `range(len(lst))` — use `enumerate(lst)`.
+
+</details>
 
 ---
 
-**Q57.** What is the GIL?  
-**A:** Global Interpreter Lock — a mutex in CPython that allows only one thread to execute Python bytecode at a time. Threads are fine for I/O-bound work. For CPU-bound parallelism, use `multiprocessing`.
+**Q56.** Difference between `sorted()` and `.sort()`?
+
+<details>
+<summary>▶ Answer</summary>
+
+`sorted()` returns a new list, works on any iterable. `.sort()` sorts in-place, only on lists.
+
+</details>
 
 ---
 
-**Q58.** How do you merge two dicts in Python 3.9+?  
-**A:** `merged = d1 | d2` — right-side values win on conflict. For in-place: `d1 |= d2`.
+**Q57.** What is the GIL?
+
+<details>
+<summary>▶ Answer</summary>
+
+Global Interpreter Lock — a mutex in CPython that allows only one thread to execute Python bytecode at a time. Threads are fine for I/O-bound work. For CPU-bound parallelism, use `multiprocessing`.
+
+</details>
 
 ---
 
-**Q59.** What does `@staticmethod` vs `@classmethod` do?  
-**A:** `@staticmethod` — no access to `self` or `cls`, just a regular function namespaced to the class.  
+**Q58.** How do you merge two dicts in Python 3.9+?
+
+<details>
+<summary>▶ Answer</summary>
+
+```python
+merged = d1 | d2        # right-side values win on conflict
+d1 |= d2                # in-place
+```
+
+</details>
+
+---
+
+**Q59.** What does `@staticmethod` vs `@classmethod` do?
+
+<details>
+<summary>▶ Answer</summary>
+
+`@staticmethod` — no access to `self` or `cls`, just a regular function namespaced to the class.
+
 `@classmethod` — receives `cls` as first argument; used for alternative constructors.
+
 ```python
 class Config:
     @classmethod
@@ -1071,10 +1472,18 @@ class Config:
         return key.isidentifier()
 ```
 
+</details>
+
 ---
 
-**Q60.** How do you make a class iterable?  
-**A:** Implement `__iter__` (returns `self` or an iterator object) and `__next__` (returns next value, raises `StopIteration` when done).
+**Q60.** How do you make a class iterable?
+
+<details>
+<summary>▶ Answer</summary>
+
+Implement `__iter__` (returns `self` or an iterator object) and `__next__` (returns next value, raises `StopIteration` when done).
+
+</details>
 
 ---
 
