@@ -1,0 +1,92 @@
+## Questions 1–30: Python Syntax and Fundamentals
+
+1. **Swap Variables Without Temp:** Given two variables `x` and `y`, swap their values without using a third variable.  
+    _Hint:_ Python's tuple unpacking allows swapping values in one line.
+    
+2. **Reverse a String:** Given a string, return the string reversed.  
+    _Hint:_ Use Python slicing like `s[::-1]` or the built-in `reversed()` function to reverse the sequence.
+    
+3. **Palindrome Check:** Check if a given string reads the same forwards and backwards (case-sensitive, no spaces removed).  
+    _Hint:_ Compare the string to its reverse (e.g., `s == s[::-1]`).
+    
+4. **Factorial Calculation:** Compute the factorial of a non-negative integer n (n! = n × (n-1) × ... × 1).  
+    _Hint:_ Use a loop or recursion; 0! is 1 as the base case.
+    
+5. **Fibonacci Sequence:** Generate the first n numbers of the Fibonacci sequence (where Fib(0)=0, Fib(1)=1).  
+    _Hint:_ Use iteration or recursion; store previous two numbers to compute the next.
+    
+6. **Prime Number Test:** Determine if a given number is prime (only divisible by 1 and itself).  
+    _Hint:_ Check divisibility from 2 up to sqrt(n); if no divisors found, it's prime.
+    
+7. **List Primes up to N:** List all prime numbers up to a given number N.  
+    _Hint:_ Try a brute force prime check for each number or use the Sieve of Eratosthenes for efficiency.
+    
+8. **Greatest Common Divisor:** Find the greatest common divisor (GCD) of two positive integers.  
+    _Hint:_ Use Euclid's algorithm (repeatedly take modulo) for an efficient solution.
+    
+9. **Count Vowels:** Count the number of vowels in a given string.  
+    _Hint:_ Loop through the string or use a list comprehension, checking each character against vowels `{'a','e','i','o','u'}`.
+    
+10. **Word Frequency:** Given a sentence, count the occurrences of each word.  
+    _Hint:_ Use `str.split()` to get words and a dictionary (or `collections.Counter`) to count frequencies.
+    
+11. **Remove Vowels from String:** Remove all vowels from a given string.  
+    _Hint:_ Use a filter or list comprehension to exclude characters in the set of vowels.
+    
+12. **Remove Duplicates from List:** Given a list, remove duplicate elements while preserving the original order.  
+    _Hint:_ Use a set to track seen elements and build a new list with only the first occurrence of each element.
+    
+13. **Second Largest Number:** Find the second largest number in a list of integers.  
+    _Hint:_ Track the largest and second largest values in one pass (updating accordingly), or sort the list and pick the second last unique value.
+    
+14. **Merge Sorted Lists:** Given two sorted lists of integers, merge them into one sorted list.  
+    _Hint:_ Use two pointers to traverse both lists, appending the smaller element each time; alternatively, use Python's sorted on the concatenation (less optimal).
+    
+15. **Anagram Check:** Check if two strings are anagrams of each other (contain exactly the same characters in a different order).  
+    _Hint:_ Sort both strings and compare, or count characters using a dictionary/Counter for each and compare frequencies.
+    
+16. **Sort by Second Element:** Given a list of tuples, sort it by the second element of each tuple.  
+    _Hint:_ Use the `sorted()` function with a key, e.g., `sorted(list_of_tuples, key=lambda x: x[1])`.
+    
+17. **Sum of Digits:** Calculate the sum of all digits of a given integer.  
+    _Hint:_ Use a loop with modulus/division to extract digits, or convert to string and sum the int-converted characters.
+    
+18. **Reverse Integer Digits:** Reverse the digits of an integer. E.g., 123 -> 321 (assuming no overflow issues).  
+    _Hint:_ Use modulus and division repeatedly to construct the reversed number, or convert to string and reverse that (mind the sign for negative numbers).
+    
+19. **All Unique Characters:** Determine if a string has all unique characters (no duplicates).  
+    _Hint:_ Use a set to track seen characters or compare length of set of characters to length of string.
+    
+20. **List Intersection:** Find the common elements (intersection) of two lists.  
+    _Hint:_ Use a set for one list and iterate through the other, checking membership (for efficiency).
+    
+21. **List Subset Check:** Check if one list is a subset of another (if all elements of the smaller list are contained in the larger list).  
+    _Hint:_ Convert the larger list to a set and ensure every element of the smaller list is in that set.
+    
+22. **Sort Words by Length:** Sort a list of words by their length (shortest to longest).  
+    _Hint:_ Use `sorted(words, key=len)` to sort by length of each word.
+    
+23. **Sort Numeric Strings:** You have a list of numbers in string form. Sort this list by numeric value (e.g., "2" comes before "11" because 2 < 11).  
+    _Hint:_ Use `sorted(strings, key=int)` to convert strings to integers for comparison during sort.
+    
+24. **Comprehension – Squares of Evens:** Generate a list of the squares of all even numbers from 1 to N.  
+    _Hint:_ Use a list comprehension: `[x*x for x in range(1, N+1) if x % 2 == 0]`.
+    
+25. **Dictionary Comprehension:** Given a dictionary `mappings`, invert it to get a new dictionary where values map to keys.  
+    _Hint:_ Use a dict comprehension: `{v: k for k, v in mappings.items()}`.
+    
+26. **Longest Word in Sentence:** Find the longest word in a sentence and report its length.  
+    _Hint:_ Split the sentence by spaces and use `max(words, key=len)` to find the longest word (track its length as needed).
+    
+27. **Flatten Nested List (Shallow):** Flatten a nested list by one level. For example, `[[1,2],[3,4]]` becomes `[1,2,3,4]`.  
+    _Hint:_ Use a nested loop or a list comprehension like `[item for sublist in lists for item in sublist]`.
+    
+28. **Cumulative Sum:** Given a list of numbers, produce a new list where each element is the cumulative sum up to that index of the original list.  
+    _Hint:_ Loop through the list, accumulating the sum, or use itertools.accumulate for a Pythonic solution.
+    
+29. **Leap Year Check:** Determine if a given year is a leap year. (Leap years are divisible by 4, except century years not divisible by 400).  
+    _Hint:_ Check the divisibility conditions: `year % 4 == 0` and (`year % 100 != 0` or `year % 400 == 0`).
+    
+30. **Transpose Matrix:** Compute the transpose of a given 2D matrix (rows become columns and vice versa).  
+    _Hint:_ Use nested loops or `zip(*matrix)` in Python to unpack rows as columns.
+    
